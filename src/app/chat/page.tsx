@@ -1,4 +1,4 @@
-import { Calendar, Home, Inbox, Search, Settings } from "lucide-react"
+import { Calendar, Home, Inbox, Search, Settings ,LogOut ,LogIn} from "lucide-react"
 
 import{ChatApp} from "@/components/ui/chat"
 import {
@@ -21,7 +21,12 @@ const items = [
     icon: Home,
   },
   {
-    title: "Inbox",
+    title:"Join-Room",
+    url: "#",
+    icon: LogIn,
+  },
+  {
+    title: "Chat",
     url: "#",
     icon: Inbox,
   },
@@ -40,6 +45,11 @@ const items = [
     url: "#",
     icon: Settings,
   },
+  {
+    title:"Log-out",
+    url: "http://localhost:3000/login",
+    icon: LogOut
+  }
 ]
 
 export default function AppSidebar() {
@@ -67,7 +77,7 @@ export default function AppSidebar() {
       </SidebarContent>
     </Sidebar>
         <ChatApp>
-            
+
         </ChatApp>
     </SidebarProvider>
   )

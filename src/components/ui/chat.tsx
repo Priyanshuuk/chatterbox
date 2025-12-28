@@ -1,6 +1,6 @@
  function ChatApp() {
   return (
-    <div className="h-screen flex flex-col bg-zinc-100">
+    <div className="h-screen w-screen flex flex-col bg-zinc-100">
 
       {/* Header */}
       <div className="h-14 px-4 flex items-center justify-between bg-white border-b">

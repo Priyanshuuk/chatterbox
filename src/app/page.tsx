@@ -1,12 +1,12 @@
 import { redirect } from "next/navigation";
-
+import { Navbar } from "@/components/sections/navbar/default";
+import {Hero} from "@/components/sections/hero/default"
 export default function HomePage() {
   // TEMP: fake auth check
-  const isLoggedIn = false;
-
-  if (!isLoggedIn) {
-    redirect("/signup");
-  }
-
-  redirect("/chat");
+  return(
+    <div>
+      <Navbar></Navbar>
+      <Hero></Hero>
+    </div>
+  )
 }
