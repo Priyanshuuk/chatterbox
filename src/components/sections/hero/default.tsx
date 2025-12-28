@@ -30,7 +30,7 @@ interface HeroProps {
 
 function Hero({
   title = "Chat. Forget. Repeat.",
-  description = "Chat with your friends anywhere, everywhere.",
+  description = "Real-time chat rooms with secure authentication and modern UI",
   mockup = (
     <Screenshot
       srcLight="/dashboard-light.png"
