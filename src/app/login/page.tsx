@@ -13,15 +13,17 @@ import { Label } from "@/components/ui/label"
 
 export default function CardDemo() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-black font-mono text-2xl">
-      <Card className="w-full max-w-sm bg-black text-white ">
+    <div className="min-h-screen flex items-center justify-center bg-slate-100 dark:bg-slate-900
+ font-mono text-2xl">
+      <Card className="w-full max-w-sm dark:bg-black dark:text-white ">
         <CardHeader>
           <CardTitle >Login to your account</CardTitle>
           <CardDescription className="text-sm">
             Enter your email below to login to your account
           </CardDescription>
           <CardAction>
-            <Button variant="link" className="bg-gray-700 text-white hover:bg-white hover:text-black hover:text-shadow-sky-300">Sign Up</Button>
+           <a href="http://localhost:3000/signup"> <Button variant="link" className="bg-gray-700 text-white hover:bg-white hover:text-black hover:text-shadow-sky-300" >Sign Up</Button>
+         </a>
           </CardAction>
         </CardHeader>
 
