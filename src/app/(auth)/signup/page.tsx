@@ -1,5 +1,6 @@
+"use client"
 import { cn } from "@/lib/utils";
-
+import {useState} from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
@@ -32,6 +33,33 @@ export default function Signup1 ({
   signupUrl = "http://localhost:3000/login",
   className,
 }: Signup1Props){
+
+const[email,setemail] = useState("");
+const [password, setPassword] = useState("");
+const [confirmPassword, setConfirmPassword] = useState("");
+
+
+const createacc = async () =>{
+   const res = await fetch("/api/auth/signup" , {
+     method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email,
+        password,
+      conform_password: confirmPassword,
+   }),
+  });
+
+   const data = await res.json();
+
+    if (!res.ok) {
+      alert(data.error);
+      return;
+    }
+
+    alert("Account created successfully!");
+}
+
   return (
     <section className={cn("h-screen bg-muted", className)}>
       <div className="flex h-full items-center justify-center">
@@ -50,22 +78,28 @@ export default function Signup1 ({
             <Input
               type="email"
               placeholder="Email"
+              value={email}
+              onChange={(e) => setemail(e.target.value)}
               className="text-sm"
               required
             />
             <Input
               type="password"
               placeholder="Password"
+              value = {password}
+              onChange={(e) => setPassword(e.target.value)}
               className="text-sm"
               required
             />
             <Input
               type="password"
               placeholder="Confirm Password"
+              value={confirmPassword}
               className="text-sm"
+              onChange={(e) => setConfirmPassword(e.target.value)}
               required
             />
-            <Button type="submit" className="w-full text-lg font-mono">
+            <Button onClick={createacc} type="submit" className="w-full text-lg font-mono">
               {buttonText}
             </Button>
           </div>
