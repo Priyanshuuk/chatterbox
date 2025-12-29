@@ -1,4 +1,8 @@
+"use client"
 import { Button } from "@/components/ui/button"
+import { useState } from "react"
+import { useRouter } from "next/navigation";
+
 import {
   Card,
   CardAction,
@@ -12,6 +16,33 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 
 export default function CardDemo() {
+    const router = useRouter();
+
+    const [email , setemail] = useState("");
+    const [password , setpassword] = useState("");
+
+
+  const handle_login = async () => {
+  const res = await fetch("/api/auth/login", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      email,
+      password,
+    }),
+  });
+
+  const data = await res.json();
+
+  if (!res.ok) {
+    alert(data.error);
+    return;
+  }
+
+  alert("Login successful!");
+   router.push("/chat");
+};
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-slate-100 dark:bg-slate-900
  font-mono text-2xl">
@@ -36,6 +67,8 @@ export default function CardDemo() {
                   id="email"
                   type="email"
                   placeholder="m@example.com"
+                  value = {email}
+                  onChange={(e) => setemail(e.target.value)}
                   required
                 />
               </div>
@@ -46,18 +79,19 @@ export default function CardDemo() {
                   <a
                     href="#"
                     className="ml-auto inline-block text-sm underline-offset-4 hover:underline"
+                   
                   >
                     Forgot your password?
                   </a>
                 </div>
-                <Input id="password" type="password" required />
+                <Input id="password" type="password" required value = {password} onChange={(e) => setpassword(e.target.value)} />
               </div>
             </div>
           </form>
         </CardContent>
 
         <CardFooter className="flex-col gap-2">
-          <Button type="submit" className="w-full hover:text-shadow-sky-300 hover:bg-white hover:text-black hover:underline underline-offset-8">
+          <Button onClick={handle_login} type="submit" className="w-full hover:text-shadow-sky-300 hover:bg-white hover:text-black hover:underline underline-offset-8">
             Login
           </Button>
           <Button variant="outline" className="w-full bg-gray-700">
