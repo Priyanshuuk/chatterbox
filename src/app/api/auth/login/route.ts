@@ -2,6 +2,9 @@ import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
 import prisma from "@/lib/db";
 
+import * as jwt from "jsonwebtoken";
+
+
 
 export async function POST(req: Request) {
     const { email, password } = await req.json();
@@ -26,16 +29,35 @@ export async function POST(req: Request) {
       }
 
       const match = await bcrypt.compare(password, user.password);
-
+      
       if(match){
         //go to chat
-         return NextResponse.json(
+            
+       const token = jwt.sign({
+        userId :user.id,
+        email :user.email,
+        }, process.env.JWT_SECRET!, { expiresIn: 10*60});
+
+
+      const response = NextResponse.json(
         {
         message: "Login successful",
         userId: user.id,
          },
         { status: 200 }
+        
      );
+
+     response.cookies.set("token", token, {
+      httpOnly: true,
+      secure: false,
+      sameSite: "lax",
+      path: "/", 
+      maxAge: 60 * 10,
+    });
+
+
+     return response;
       }
     
         return NextResponse.json(
