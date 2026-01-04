@@ -44,8 +44,8 @@ export default function CardDemo() {
 };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-100 dark:bg-slate-900
- font-mono text-2xl">
+    <div className="min-h-screen flex items-center justify-center bg-slate-100 dark:bg-slate-900 font-mono text-2xl">
+
       <Card className="w-full max-w-sm dark:bg-black dark:text-white ">
         <CardHeader>
           <CardTitle >Login to your account</CardTitle>
