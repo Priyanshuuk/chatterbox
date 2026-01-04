@@ -89,14 +89,13 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 <br>
 
 ### Landing
-![Landing Page](/screenshots/landing.png)
-
+![Landing Page](public/screenshots/landing.png)
 
 ### Login
-![Login Page](./screenshots/login.png)
+![Login Page](public/screenshots/login.png)
 
 ### Signup
-![Signup Page](./screenshots/signup.png)
+![Signup Page](public/screenshots/signup.png)
 
 ### Chat
-![Chat Dashboard](./screenshots/chat.png)
+![Chat Dashboard](public/screenshots/chat.png)
