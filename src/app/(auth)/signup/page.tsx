@@ -24,7 +24,7 @@ export default function Signup1 ({
   heading ="Signup",
   logo = {
     url: "https://www.Chatterbox.com",
-    src: ".svg",
+    src: "favicon.ico",
     alt: "Logo",
     title: "Chatterbox.com",
   },
@@ -64,13 +64,13 @@ const createacc = async () =>{
     <section className={cn("h-screen bg-muted", className)}>
       <div className="flex h-full items-center justify-center">
         {/* Logo */}
-        <div className="flex flex-col items-center gap-6 lg:justify-start">
+        <div className="flex flex-col items-center gap-6 lg:justify-start ">
           <a href={logo.url}>
             <img
               src={logo.src}
               alt={logo.alt}
               title={logo.title}
-              className="h-10 dark:invert font-mono text-2xl"
+              className="h-20 dark:invert font-mono text-2xl lg:h-20 rounded-full dark:invert"
             />
           </a>
           <div className="flex w-full max-w-sm min-w-sm flex-col items-center gap-y-4 rounded-md border border-muted bg-background px-6 py-8 shadow-md">

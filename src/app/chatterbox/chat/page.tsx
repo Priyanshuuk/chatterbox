@@ -1,5 +1,5 @@
 import { Calendar, Home, Inbox, Search, Settings ,LogOut ,LogIn} from "lucide-react"
-
+import { useLogout } from "./log-out"
 import{ChatApp} from "@/components/ui/chat"
 import {
   Sidebar,
@@ -13,42 +13,43 @@ import {
   SidebarProvider,
 } from "@/components/ui/sidebar"
 
-// Menu items.
+
 const items = [
   {
     title: "Home",
-    url: "#",
+    url: "http://localhost:3000/chatterbox/chat",
     icon: Home,
+    action : '#' 
   },
   {
     title:"Join-Room",
     url: "#",
     icon: LogIn,
+     action : '#' 
   },
   {
     title: "Chat",
     url: "#",
     icon: Inbox,
-  },
-  {
-    title: "Calendar",
-    url: "#",
-    icon: Calendar,
+     action : '#' 
   },
   {
     title: "Search",
     url: "#",
     icon: Search,
+     action : '#' 
   },
   {
     title: "Settings",
-    url: "#",
+    url: "http://localhost:3000/chatterbox/setting",
     icon: Settings,
+     action : '#' 
   },
   {
     title:"Log-out",
     url: "http://localhost:3000/login",
-    icon: LogOut
+    icon: LogOut,
+    action : useLogout
   }
 ]
 

@@ -13,4 +13,24 @@ model User {
   email     String   @unique
   password  String
   createdAt DateTime @default(now())
+
+  messages  Message[]
+}
+
+model Room {
+  id        Int      @id @default(autoincrement())
+  name      String
+  createdAt DateTime @default(now())
+
+  messages  Message[]
+}
+
+model Message {
+  id        Int      @id @default(autoincrement())
+  content   String
+  createdAt DateTime @default(now())
+  senderId  Int
+  roomId    Int
+  sender    User @relation(fields: [senderId], references: [id])
+  room      Room @relation(fields: [roomId], references: [id])
 }

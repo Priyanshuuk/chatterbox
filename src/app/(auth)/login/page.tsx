@@ -40,7 +40,7 @@ export default function CardDemo() {
   }
 
   alert("Login successful!");
-   router.push("/chat");
+   router.push("/chatterbox/chat");
 };
 
   return (
