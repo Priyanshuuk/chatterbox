@@ -40,7 +40,7 @@ export default function Docs() {
           <div className="space-y-2">
             <p className="font-medium">Landing Page</p>
             <Image
-              src="/screenshots/landing.png"
+              src="/screenshots/landing1.png"
               alt="ChatterBox Landing Page"
               width={800}
               height={500}
@@ -51,7 +51,7 @@ export default function Docs() {
           <div className="space-y-2">
             <p className="font-medium">Chat Interface</p>
             <Image
-              src="/screenshots/landing.png"
+              src="/screenshots/chat1.png"
               alt="Chat Interface"
               width={800}
               height={500}
@@ -62,7 +62,7 @@ export default function Docs() {
           <div className="space-y-2">
             <p className="font-medium">Signup Page</p>
             <Image
-              src="/screenshots/signup.png"
+              src="/screenshots/signup1.png"
               alt="Signup Page"
               width={800}
               height={500}
@@ -73,7 +73,7 @@ export default function Docs() {
           <div className="space-y-2">
             <p className="font-medium">Login Page</p>
             <Image
-              src="/screenshots/login.png"
+              src="/screenshots/login1.png"
               alt="Login Page"
               width={800}
               height={500}
