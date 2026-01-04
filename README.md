@@ -89,7 +89,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 <br>
 
 ### Landing
-![Landing Page](./screenshots/landing.png)
+![Landing Page](/screenshots/landing.png)
 
 
 ### Login
