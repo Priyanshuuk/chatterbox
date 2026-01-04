@@ -90,12 +90,16 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ### Landing
 ![Landing Page](public/screenshots/landing.png)
+![Landing Page light mode ](public/screenshots/landing1.png)
 
 ### Login
 ![Login Page](public/screenshots/login.png)
+![Login Page light mode ](public/screenshots/login1.png)
 
 ### Signup
 ![Signup Page](public/screenshots/signup.png)
+![Signup Page light mode ](public/screenshots/signup1.png)
 
 ### Chat
 ![Chat Dashboard](public/screenshots/chat.png)
+![Chat Dashboard light mode ](public/screenshots/chat1.png)
