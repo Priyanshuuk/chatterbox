@@ -57,7 +57,7 @@ export default function Navigation({
     {
       title: "Documentation",
       isLink: true,
-      href: "https://www.launchuicomponents.com/",
+      href: "http://localhost:3000/docs",
     },
   ],
   components = [

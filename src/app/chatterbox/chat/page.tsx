@@ -23,7 +23,7 @@ const items = [
   },
   {
     title:"Join-Room",
-    url: "#",
+    url: "http://localhost:3000/chatterbox/join-room",
     icon: LogIn,
      action : '#' 
   },
@@ -59,7 +59,7 @@ export default function AppSidebar() {
     <Sidebar>
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>Application</SidebarGroupLabel>
+          <SidebarGroupLabel>Chatterbox</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {items.map((item) => (
