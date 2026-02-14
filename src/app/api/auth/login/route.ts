@@ -19,7 +19,7 @@ export async function POST(req: Request) {
    
     await connectDB();
 
-    // 🔍 Find user
+    
     const user = await User.findOne({ email });
     if (!user) {
       return NextResponse.json(
@@ -37,7 +37,7 @@ export async function POST(req: Request) {
       );
     }
 
-    // 🎟️ Create JWT
+    // Create JWT
  
 
     // Set cookie

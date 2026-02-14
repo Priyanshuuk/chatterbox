@@ -1,4 +1,4 @@
-import { Calendar, Home, Inbox, Search, Settings ,LogOut ,LogIn} from "lucide-react"
+import { Calendar, Home, Inbox, Search, Settings ,LogOut ,LogIn,PlusSquare} from "lucide-react"
 import { useLogout } from "./log-out"
 import{ChatApp} from "@/components/ui/chat"
 import {
@@ -50,6 +50,12 @@ const items = [
     url: "http://localhost:3000/login",
     icon: LogOut,
     action : useLogout
+  },
+  {
+    title:"Create-Room",
+    url: "http://localhost:3000/create_room",
+    icon: PlusSquare,
+    action : '#'
   }
 ]
 
