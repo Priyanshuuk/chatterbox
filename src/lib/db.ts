@@ -1,18 +1,24 @@
-import { PrismaClient } from '../generated/prisma/client'
-import { PrismaPg } from '@prisma/adapter-pg'
+import mongoose from "mongoose";
 
-const globalForPrisma = global as unknown as {
-    prisma: PrismaClient
+const MONGODB_URI = process.env.MONGODB_URI!;
+
+if (!MONGODB_URI) {
+  throw new Error("Please define MONGODB_URI in .env");
 }
 
-const adapter = new PrismaPg({
-  connectionString: process.env.DATABASE_URL,
-})
+let cached = (global as any).mongoose;
 
-const prisma = globalForPrisma.prisma || new PrismaClient({
-  adapter,
-})
+if (!cached) {
+  cached = (global as any).mongoose = { conn: null, promise: null };
+}
 
-if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma
+export async function connectDB() {
+  if (cached.conn) return cached.conn;
 
-export default prisma
+  if (!cached.promise) {
+    cached.promise = mongoose.connect(MONGODB_URI).then((mongoose) => mongoose);
+  }
+
+  cached.conn = await cached.promise;
+  return cached.conn;
+}

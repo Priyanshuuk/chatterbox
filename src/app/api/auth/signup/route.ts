@@ -1,29 +1,34 @@
 import bcrypt from "bcryptjs";
 import { NextResponse } from "next/server";
-import prisma from "@/lib/db";
+
+import { connectDB } from "@/lib/db";
+import { User } from "@/model/User"; 
 
 export async function POST(req: Request) {
   try {
-    const { email, password, conform_password } = await req.json();
-    
-    if(conform_password != password)return NextResponse.json(
-      { error: "Passwords should match" },
-      { status: 500 }
-    );
-    
-    email.toLowerCase();
-    
-    if (email =="" || password =="") {
+    const { email, password, confirm_password } = await req.json();
+
+    if (!email || !password || !confirm_password) { 
       return NextResponse.json(
-        { error: "Email and password cannot be empty" },
+        { error: "All fields are required" },
         { status: 400 }
       );
     }
 
-    const existingUser = await prisma.user.findUnique({
-      where: { email },
-    });
+    if (password !== confirm_password) {
+      return NextResponse.json(
+        { error: "Passwords should match" },
+        { status: 400 }
+      );
+    }
 
+    const normalizedEmail = email.toLowerCase();
+
+   
+    await connectDB();
+
+   
+    const existingUser = await User.findOne({ email: normalizedEmail });
     if (existingUser) {
       return NextResponse.json(
         { error: "User already exists" },
@@ -31,19 +36,19 @@ export async function POST(req: Request) {
       );
     }
 
+   
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    const user = await prisma.user.create({
-      data: {
-        email,
-        password: hashedPassword,
-      },
+    // Create user
+    const user = await User.create({
+      email: normalizedEmail,
+      password: hashedPassword,
     });
 
     return NextResponse.json(
       {
         message: "User created successfully",
-        userId: user.id,
+        userId: user._id,
       },
       { status: 201 }
     );

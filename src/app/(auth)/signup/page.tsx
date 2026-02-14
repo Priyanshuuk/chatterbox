@@ -46,7 +46,8 @@ const createacc = async () =>{
       body: JSON.stringify({
         email,
         password,
-      conform_password: confirmPassword,
+     confirm_password: confirmPassword,
+
    }),
   });
 
