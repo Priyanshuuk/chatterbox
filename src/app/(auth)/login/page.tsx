@@ -39,27 +39,30 @@ export default function CardDemo() {
     return;
   }
 
-  alert("Login successful!");
-   router.push("/chatterbox/chat");
+  if (data.token) {
+    localStorage.setItem("token", data.token);
+  }
+
+  router.push("/chatterbox/chat");
 };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-slate-100 dark:bg-slate-900 font-mono text-2xl">
 
       <Card className="w-full max-w-sm dark:bg-black dark:text-white ">
+        <form onSubmit={(e) => { e.preventDefault(); handle_login(); }}>
         <CardHeader>
           <CardTitle >Login to your account</CardTitle>
           <CardDescription className="text-sm">
             Enter your email below to login to your account
           </CardDescription>
           <CardAction>
-           <a href="http://localhost:3000/signup"> <Button variant="link" className="bg-gray-700 text-white hover:bg-white hover:text-black hover:text-shadow-sky-300" >Sign Up</Button>
+           <a href="/signup"> <Button variant="link" className="bg-gray-700 text-white hover:bg-white hover:text-black hover:text-shadow-sky-300" >Sign Up</Button>
          </a>
           </CardAction>
         </CardHeader>
 
         <CardContent>
-          <form>
             <div className="flex flex-col gap-6">
               <div className="grid gap-2">
                 <Label htmlFor="email">Email</Label>
@@ -67,7 +70,7 @@ export default function CardDemo() {
                   id="email"
                   type="email"
                   placeholder="m@example.com"
-                  value = {email}
+                  value={email}
                   onChange={(e) => setemail(e.target.value)}
                   required
                 />
@@ -76,28 +79,24 @@ export default function CardDemo() {
               <div className="grid gap-2">
                 <div className="flex items-center">
                   <Label htmlFor="password">Password</Label>
-                  <a
-                    href="#"
-                    className="ml-auto inline-block text-sm underline-offset-4 hover:underline"
-                   
-                  >
+                  <a href="#" className="ml-auto inline-block text-sm underline-offset-4 hover:underline">
                     Forgot your password?
                   </a>
                 </div>
-                <Input id="password" type="password" required value = {password} onChange={(e) => setpassword(e.target.value)} />
+                <Input id="password" type="password" required value={password} onChange={(e) => setpassword(e.target.value)} />
               </div>
             </div>
-          </form>
         </CardContent>
 
         <CardFooter className="flex-col gap-2">
-          <Button onClick={handle_login} type="submit" className="w-full hover:text-shadow-sky-300 hover:bg-white hover:text-black hover:underline underline-offset-8">
+          <Button type="submit" className="w-full hover:text-shadow-sky-300 hover:bg-white hover:text-black hover:underline underline-offset-8">
             Login
           </Button>
           <Button variant="outline" className="w-full bg-gray-700">
             Login with Google
           </Button>
         </CardFooter>
+        </form>
       </Card>
     </div>
   )

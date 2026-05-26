@@ -1,4 +1,4 @@
-import { Schema, model } from "mongoose";
+import { Schema, model, Types } from "mongoose";
 
 const userSchema = new Schema(
   {
@@ -12,8 +12,36 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
+    username: {
+      type: String,
+      default: "",
+    },
+    avatar: {
+      type: String,
+      default: "",
+    },
+    friendCode: {
+      type: String,
+      unique: true,
+      default: "",
+    },
+    friends: [{
+      type: Types.ObjectId,
+      ref: "User",
+    }],
   },
   { timestamps: true }
 );
+
+userSchema.pre("save", function () {
+  if (this.isNew && !this.friendCode) {
+    const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+    let code = "";
+    for (let i = 0; i < 8; i++) {
+      code += chars[Math.floor(Math.random() * chars.length)];
+    }
+    this.friendCode = code;
+  }
+});
 
 export const User = model("User", userSchema);

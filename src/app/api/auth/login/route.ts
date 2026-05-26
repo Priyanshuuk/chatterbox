@@ -37,19 +37,28 @@ export async function POST(req: Request) {
       );
     }
 
-    // 🎟️ Create JWT
- 
+    const token = jwt.sign(
+      { userId: user._id, email: user.email },
+      process.env.JWT_SECRET!,
+      { expiresIn: "7d" }
+    );
 
-    // Set cookie
     const response = NextResponse.json(
       {
         message: "Login successful",
         userId: user._id,
+        token,
       },
       { status: 200 }
     );
 
-  
+    response.cookies.set("token", token, {
+      httpOnly: false,
+      secure: false,
+      sameSite: "lax",
+      maxAge: 7 * 24 * 60 * 60,
+      path: "/",
+    });
 
     return response;
   } catch (error) {

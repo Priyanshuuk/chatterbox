@@ -50,10 +50,10 @@ interface NavbarProps {
   name = "Chatterbox",
  
   actions = [
-    { text: "Sign in", href: "http://localhost:3000/login", isButton: false },
+    { text: "Sign in", href: "/login", isButton: false },
     {
       text: "Get Started",
-      href: "http://localhost:3000/login",
+      href: "/login",
       isButton: true,
       variant: "default",
     },

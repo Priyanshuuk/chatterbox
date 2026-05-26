@@ -6,7 +6,7 @@ import { User } from "@/model/User";
 
 export async function POST(req: Request) {
   try {
-    const { email, password, confirm_password } = await req.json();
+    const { email, password, confirm_password, username } = await req.json();
 
     if (!email || !password || !confirm_password) { 
       return NextResponse.json(
@@ -43,6 +43,7 @@ export async function POST(req: Request) {
     const user = await User.create({
       email: normalizedEmail,
       password: hashedPassword,
+      username: username || normalizedEmail.split("@")[0],
     });
 
     return NextResponse.json(

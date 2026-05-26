@@ -1,6 +1,7 @@
 "use client"
 import { cn } from "@/lib/utils";
 import {useState} from "react";
+import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
@@ -19,7 +20,6 @@ interface Signup1Props {
   className?: string;
 }
 
-
 export default function Signup1 ({
   heading ="Signup",
   logo = {
@@ -30,28 +30,32 @@ export default function Signup1 ({
   },
   buttonText = "Create Account",
   signupText = "Already a user?",
-  signupUrl = "http://localhost:3000/login",
+  signupUrl = "/login",
   className,
 }: Signup1Props){
+  const router = useRouter();
+  const [username, setUsername] = useState("");
+  const [email, setemail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
-const[email,setemail] = useState("");
-const [password, setPassword] = useState("");
-const [confirmPassword, setConfirmPassword] = useState("");
-
-
-const createacc = async () =>{
-   const res = await fetch("/api/auth/signup" , {
-     method: "POST",
+  const createacc = async () =>{
+    if (password !== confirmPassword) {
+      alert("Passwords do not match");
+      return;
+    }
+    const res = await fetch("/api/auth/signup" , {
+      method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         email,
         password,
-     confirm_password: confirmPassword,
+        username: username || undefined,
+        confirm_password: confirmPassword,
+      }),
+    });
 
-   }),
-  });
-
-   const data = await res.json();
+    const data = await res.json();
 
     if (!res.ok) {
       alert(data.error);
@@ -59,12 +63,12 @@ const createacc = async () =>{
     }
 
     alert("Account created successfully!");
-}
+    router.push("/login");
+  }
 
   return (
     <section className={cn("h-screen bg-muted", className)}>
       <div className="flex h-full items-center justify-center">
-        {/* Logo */}
         <div className="flex flex-col items-center gap-6 lg:justify-start ">
           <a href={logo.url}>
             <img
@@ -74,8 +78,15 @@ const createacc = async () =>{
               className="h-20 dark:invert font-mono text-2xl lg:h-20 rounded-full dark:invert"
             />
           </a>
-          <div className="flex w-full max-w-sm min-w-sm flex-col items-center gap-y-4 rounded-md border border-muted bg-background px-6 py-8 shadow-md">
+          <form onSubmit={(e) => { e.preventDefault(); createacc(); }} className="flex w-full max-w-sm min-w-sm flex-col items-center gap-y-4 rounded-md border border-muted bg-background px-6 py-8 shadow-md">
             {heading && <h1 className="text-2xl font-semibold font-mono">{heading}</h1>}
+            <Input
+              type="text"
+              placeholder="Username (optional)"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              className="text-sm"
+            />
             <Input
               type="email"
               placeholder="Email"
@@ -100,10 +111,10 @@ const createacc = async () =>{
               onChange={(e) => setConfirmPassword(e.target.value)}
               required
             />
-            <Button onClick={createacc} type="submit" className="w-full text-lg font-mono">
+            <Button type="submit" className="w-full text-lg font-mono">
               {buttonText}
             </Button>
-          </div>
+          </form>
           <div className="flex justify-center gap-1 text-sm text-muted-foreground">
             <p>{signupText}</p>
             <a
@@ -118,5 +129,3 @@ const createacc = async () =>{
     </section>
   );
 };
-
-

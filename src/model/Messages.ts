@@ -4,7 +4,7 @@ const messageSchema = new Schema(
   {
     content: {
       type: String,
-      required: true,
+      default: "",
     },
     sender: {
       type: Types.ObjectId,
@@ -16,6 +16,19 @@ const messageSchema = new Schema(
       ref: "Room",
       required: true,
     },
+    type: {
+      type: String,
+      enum: ["text", "image", "audio"],
+      default: "text",
+    },
+    fileUrl: {
+      type: String,
+      default: "",
+    },
+    readBy: [{
+      type: Types.ObjectId,
+      ref: "User",
+    }],
   },
   { timestamps: true }
 );
