@@ -18,21 +18,7 @@ const items = [
     url: "/chatterbox/chat",
     icon: Home,
   },
-  {
-    title: "Join-Room",
-    url: "/chatterbox/join-room",
-    icon: LogIn,
-  },
-  {
-    title: "Chat",
-    url: "#",
-    icon: Inbox,
-  },
-  {
-    title: "Search",
-    url: "#",
-    icon: Search,
-  },
+
   {
     title: "Settings",
     url: "/chatterbox/setting",
