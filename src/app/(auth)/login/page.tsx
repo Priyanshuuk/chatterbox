@@ -2,6 +2,7 @@
 import { Button } from "@/components/ui/button"
 import { useState } from "react"
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 import {
   Card,
@@ -57,8 +58,8 @@ export default function CardDemo() {
             Enter your email below to login to your account
           </CardDescription>
           <CardAction>
-           <a href="/signup"> <Button variant="link" className="bg-gray-700 text-white hover:bg-white hover:text-black hover:text-shadow-sky-300" >Sign Up</Button>
-         </a>
+           <Link href="/signup"> <Button variant="link" className="bg-gray-700 text-white hover:bg-white hover:text-black hover:text-shadow-sky-300" >Sign Up</Button>
+         </Link>
           </CardAction>
         </CardHeader>
 

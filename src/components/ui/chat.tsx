@@ -65,7 +65,7 @@ function AvatarCircle({ src, name, size = 36, online }: { src?: string; name: st
         </div>
       )}
       {online !== undefined && (
-        <span className={`absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full border-[2.5px] border-white dark:border-zinc-900 ${online ? "bg-green-500 shadow-sm shadow-green-500/50" : "bg-zinc-400"}`} />
+        <span className={`absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full border-[2.5px] border-white dark:border-zinc-900 ${online ? "bg-green-500 animate-glow-pulse" : "bg-zinc-400"}`} />
       )}
     </div>
   );
@@ -1021,7 +1021,7 @@ function ChatApp() {
             <button
               onClick={createRoom}
               disabled={!!createdCode && roomType === "group"}
-              className="w-full rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 py-2.5 text-sm font-medium text-white hover:from-blue-700 hover:to-indigo-700 transition disabled:opacity-50 disabled:cursor-not-allowed shadow-sm"
+              className="w-full rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 py-2.5 text-sm font-semibold text-white hover:from-blue-700 hover:to-indigo-700 transition disabled:opacity-50 disabled:cursor-not-allowed shadow-glow-blue active:scale-[0.98]"
             >
               {createdCode && roomType === "group" ? "✓ Room Created!" : "Create New Room"}
             </button>
@@ -1093,7 +1093,7 @@ function ChatApp() {
               <button
                 onClick={joinRoom}
                 disabled={roomCodeInput.length !== 6}
-                className="rounded-xl bg-zinc-800 dark:bg-zinc-200 px-5 py-2.5 text-sm font-medium text-white dark:text-black hover:bg-zinc-700 dark:hover:bg-zinc-300 transition disabled:opacity-50 disabled:cursor-not-allowed shadow-sm"
+                className="rounded-xl bg-zinc-800 dark:bg-zinc-200 px-5 py-2.5 text-sm font-medium text-white dark:text-black hover:bg-zinc-700 dark:hover:bg-zinc-300 transition disabled:opacity-50 disabled:cursor-not-allowed shadow-sm active:scale-95"
               >
                 Join
               </button>
@@ -1223,9 +1223,15 @@ function ChatApp() {
         )}
         {!showSidebar && (
           <div className="flex items-center justify-center w-full">
-            <button onClick={() => setShowSidebar(true)} className="rounded-xl bg-gradient-to-br from-blue-500 to-indigo-500 px-6 py-3 text-sm font-medium text-white hover:from-blue-600 hover:to-indigo-600 transition shadow-lg shadow-blue-500/20">
-              Open Sidebar
-            </button>
+            <div className="text-center space-y-4 animate-float">
+              <div className="w-20 h-20 mx-auto rounded-3xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shadow-lg shadow-blue-500/20">
+                <MessageSquare size={36} className="text-white" />
+              </div>
+              <p className="text-sm text-zinc-400 font-medium">Select a conversation to start chatting</p>
+              <button onClick={() => setShowSidebar(true)} className="rounded-xl bg-gradient-to-br from-blue-500 to-indigo-500 px-6 py-3 text-sm font-semibold text-white hover:from-blue-600 hover:to-indigo-600 transition shadow-lg shadow-blue-500/20 hover:shadow-xl hover:shadow-blue-500/30 active:scale-[0.97]">
+                Open Sidebar
+              </button>
+            </div>
           </div>
         )}
       </div>
@@ -1251,7 +1257,7 @@ function ChatApp() {
         {/* Header */}
         <div className="shrink-0 h-18 px-6 flex items-center justify-between bg-white/80 dark:bg-zinc-900/80 backdrop-blur-xl border-b border-zinc-200 dark:border-zinc-800 shadow-sm">
           <div className="flex items-center gap-3 min-w-0">
-            <button onClick={() => setShowSidebar(!showSidebar)} className="p-2 rounded-xl text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition hover:text-zinc-600 dark:hover:text-zinc-300">
+            <button onClick={() => setShowSidebar(!showSidebar)} className="p-2 rounded-xl text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition hover:text-zinc-600 dark:hover:text-zinc-300 active:scale-90">
               <MessageSquare size={20} />
             </button>
             {roomType === "dm" && dmPartner ? (
@@ -1271,7 +1277,7 @@ function ChatApp() {
                   <h1 className="font-semibold text-base">Group Room</h1>
                   <div className="flex items-center gap-2">
                     <span className="font-mono font-bold tracking-wider text-blue-600 dark:text-blue-400">{room.code}</span>
-                    <button onClick={copyCode} className="p-1 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800 transition" title="Copy code">
+                    <button onClick={copyCode} className="p-1 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800 transition active:scale-90" title="Copy code">
                       {copied ? <Check size={14} className="text-green-500" /> : <Copy size={14} className="text-zinc-400" />}
                     </button>
                   </div>
@@ -1286,12 +1292,12 @@ function ChatApp() {
             {roomType === "group" && (
               <>
                 <div className="relative">
-                  <button onClick={() => { fetchRoomMembers(room.code); setShowMembers(!showMembers); }} className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition" title="Members">
+                  <button onClick={() => { fetchRoomMembers(room.code); setShowMembers(!showMembers); }} className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition active:scale-95" title="Members">
                     <Users size={14} className="text-zinc-500" />
                     <span className="text-[11px] font-medium text-zinc-500">{memberList.length || participants.length}</span>
                   </button>
                   {showMembers && memberList.length > 0 && (
-                    <div className="absolute right-0 top-full mt-2 w-64 max-h-80 overflow-y-auto rounded-2xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-2xl z-50 p-2 space-y-1 animate-in" onClick={(e) => e.stopPropagation()}>
+                    <div className="absolute right-0 top-full mt-2 w-64 max-h-80 overflow-y-auto rounded-2xl glass-card shadow-2xl z-50 p-2 space-y-1 animate-in" onClick={(e) => e.stopPropagation()}>
                       {memberList.map((m) => {
                         const isSelf = m._id === user?.userId;
                         const isOnline = onlineUsers.has(m._id);
@@ -1338,11 +1344,11 @@ function ChatApp() {
               </div>
             )}
             {roomType === "group" && roomCreator === user?.userId && (
-              <button onClick={() => { if (socket && room) { socket.emit("delete-room", room.code); } }} className="p-2 rounded-xl text-red-400 hover:bg-red-50 dark:hover:bg-red-950/30 hover:text-red-500 transition" title="Delete room">
+              <button onClick={() => { if (socket && room) { socket.emit("delete-room", room.code); } }} className="p-2 rounded-xl text-red-400 hover:bg-red-50 dark:hover:bg-red-950/30 hover:text-red-500 transition active:scale-90" title="Delete room">
                 <Trash2 size={18} />
               </button>
             )}
-            <button onClick={leaveRoom} className="p-2 rounded-xl text-red-400 hover:bg-red-50 dark:hover:bg-red-950/30 hover:text-red-500 transition" title="Leave">
+            <button onClick={leaveRoom} className="p-2 rounded-xl text-red-400 hover:bg-red-50 dark:hover:bg-red-950/30 hover:text-red-500 transition active:scale-90" title="Leave">
               <LogOut size={18} />
             </button>
           </div>
@@ -1355,8 +1361,8 @@ function ChatApp() {
               <span className="font-semibold">{chatInvite.from}</span> invited you to chat
             </p>
             <div className="flex gap-2">
-              <button onClick={acceptChatInvite} className="rounded-lg bg-blue-500 px-4 py-1.5 text-xs font-semibold text-white hover:bg-blue-600 transition shadow-sm">Join</button>
-              <button onClick={() => setChatInvite(null)} className="rounded-lg bg-zinc-200 dark:bg-zinc-700 px-3 py-1.5 text-xs font-medium hover:bg-zinc-300 dark:hover:bg-zinc-600 transition">Dismiss</button>
+              <button onClick={acceptChatInvite} className="rounded-lg bg-blue-500 px-4 py-1.5 text-xs font-semibold text-white hover:bg-blue-600 transition shadow-sm active:scale-95">Join</button>
+              <button onClick={() => setChatInvite(null)} className="rounded-lg bg-zinc-200 dark:bg-zinc-700 px-3 py-1.5 text-xs font-medium hover:bg-zinc-300 dark:hover:bg-zinc-600 transition active:scale-95">Dismiss</button>
             </div>
           </div>
         )}
@@ -1364,9 +1370,9 @@ function ChatApp() {
         {/* Messages */}
         <div className="flex-1 px-8 py-6 overflow-y-auto space-y-4 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-zinc-100/50 via-transparent to-transparent dark:from-zinc-900/30 select-none watermark-bg">
           {messages.length === 0 && (
-            <div className="flex flex-col items-center justify-center h-full text-zinc-400 animate-slide-up">
-              <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-zinc-100 to-zinc-200 dark:from-zinc-800 dark:to-zinc-700 flex items-center justify-center mb-5 shadow-inner">
-                <MessageCircle size={36} className="text-zinc-300 dark:text-zinc-600" />
+            <div className="flex flex-col items-center justify-center h-full text-zinc-400 animate-float">
+              <div className="w-24 h-24 rounded-3xl bg-gradient-to-br from-zinc-100 to-zinc-200 dark:from-zinc-800 dark:to-zinc-700 flex items-center justify-center mb-6 shadow-inner shadow-lg shadow-zinc-900/5">
+                <MessageCircle size={40} className="text-zinc-300 dark:text-zinc-600" />
               </div>
               <p className="text-lg font-semibold text-zinc-500 dark:text-zinc-400">No messages yet</p>
               <p className="text-sm text-zinc-400 mt-1.5">Send a message to start the conversation</p>
@@ -1401,8 +1407,8 @@ function ChatApp() {
                 {msg.type === "text" && (
                   <div className={`px-4 py-3 rounded-2xl text-sm leading-relaxed break-words message-bubble ${
                     isOwn(msg)
-                      ? "bg-gradient-to-br from-blue-500 via-blue-600 to-indigo-600 text-white rounded-br-sm shadow-lg shadow-blue-500/20"
-                      : "bg-gradient-to-br from-emerald-500 to-green-600 text-white rounded-bl-sm shadow-lg shadow-green-500/20"
+                      ? "bg-gradient-to-br from-blue-500 via-blue-600 to-indigo-600 text-white rounded-br-sm shadow-glow-blue"
+                      : "bg-gradient-to-br from-emerald-500 to-green-600 text-white rounded-bl-sm shadow-glow-green"
                   }`}>
                     {msg.content}
                   </div>
@@ -1459,13 +1465,13 @@ function ChatApp() {
           })}
           {/* Typing indicator */}
           {currentRoomCode && isUserTyping(currentRoomCode) && (
-            <div className="flex items-center gap-2.5 text-sm text-zinc-400 italic px-1 animate-slide-up">
-              <span className="flex gap-1 items-center">
+            <div className="flex items-center gap-3 text-sm text-zinc-500 italic px-1 animate-slide-up">
+              <div className="typing-indicator">
                 <span className="typing-dot" />
                 <span className="typing-dot" />
                 <span className="typing-dot" />
-              </span>
-              <span className="font-medium">{isUserTyping(currentRoomCode)}</span>
+              </div>
+              <span className="font-medium text-xs">{isUserTyping(currentRoomCode)}</span>
             </div>
           )}
           <div ref={messagesEndRef} />
@@ -1480,22 +1486,22 @@ function ChatApp() {
             </div>
           )}
           <div className="flex items-center gap-2">
-            <button onClick={() => fileInputRef.current?.click()} disabled={uploading} className="p-2.5 rounded-xl text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 hover:text-blue-500 transition disabled:opacity-50" title="Send image">
+            <button onClick={() => fileInputRef.current?.click()} disabled={uploading} className="p-2.5 rounded-xl text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 hover:text-blue-500 transition active:scale-90 disabled:opacity-50" title="Send image">
               <Image size={22} />
             </button>
             <input ref={fileInputRef} type="file" accept="image/*" hidden onChange={handleImageSelect} />
 
             {isRecording ? (
-              <button onClick={stopRecording} className="p-2.5 rounded-xl bg-red-500 text-white hover:bg-red-600 transition animate-pulse shadow-sm" title="Stop recording">
+              <button onClick={stopRecording} className="p-2.5 rounded-xl bg-red-500 text-white hover:bg-red-600 transition animate-pulse shadow-sm active:scale-90" title="Stop recording">
                 <Square size={18} />
               </button>
             ) : (
-              <button onClick={startRecording} disabled={uploading} className="p-2.5 rounded-xl text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 hover:text-red-500 transition disabled:opacity-50" title="Record audio">
+              <button onClick={startRecording} disabled={uploading} className="p-2.5 rounded-xl text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 hover:text-red-500 transition active:scale-90 disabled:opacity-50" title="Record audio">
                 <Mic size={22} />
               </button>
             )}
 
-            <button onClick={shareLocation} disabled={sharingLocation || uploading} className="p-2.5 rounded-xl text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 hover:text-green-500 transition disabled:opacity-50" title="Share location">
+            <button onClick={shareLocation} disabled={sharingLocation || uploading} className="p-2.5 rounded-xl text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 hover:text-green-500 transition active:scale-90 disabled:opacity-50" title="Share location">
               {sharingLocation ? (
                 <div className="w-5 h-5 rounded-full border-2 border-green-500 border-t-transparent animate-spin" />
               ) : (
@@ -1516,7 +1522,7 @@ function ChatApp() {
             <button
               onClick={sendMessage}
               disabled={!input.trim() || uploading}
-              className="p-3 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 text-white hover:from-blue-600 hover:to-indigo-700 transition disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-blue-500/20"
+              className="p-3 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 text-white hover:from-blue-600 hover:to-indigo-700 transition disabled:opacity-50 disabled:cursor-not-allowed shadow-glow-blue active:scale-90"
               title="Send message"
             >
               <Send size={20} />
