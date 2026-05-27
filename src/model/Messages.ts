@@ -1,4 +1,4 @@
-import { Schema, model, Types } from "mongoose";
+import { Schema, model, Types, models } from "mongoose";
 
 const messageSchema = new Schema(
   {
@@ -18,7 +18,7 @@ const messageSchema = new Schema(
     },
     type: {
       type: String,
-      enum: ["text", "image", "audio"],
+      enum: ["text", "image", "audio", "location"],
       default: "text",
     },
     fileUrl: {
@@ -33,4 +33,4 @@ const messageSchema = new Schema(
   { timestamps: true }
 );
 
-export const Message = model("Message", messageSchema);
+export const Message = models.Message || model("Message", messageSchema);

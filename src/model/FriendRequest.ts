@@ -1,4 +1,4 @@
-import { Schema, model, Types } from "mongoose";
+import { Schema, model, Types, models } from "mongoose";
 
 const friendRequestSchema = new Schema(
   {
@@ -21,4 +21,4 @@ const friendRequestSchema = new Schema(
   { timestamps: true }
 );
 
-export const FriendRequest = model("FriendRequest", friendRequestSchema);
+export const FriendRequest = models.FriendRequest || model("FriendRequest", friendRequestSchema);

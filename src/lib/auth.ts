@@ -3,6 +3,7 @@ import * as jwt from "jsonwebtoken";
 export interface JwtPayload {
   userId: string;
   email: string;
+  username?: string;
 }
 
 export function verifyJwt(token: string): JwtPayload {

@@ -22,12 +22,17 @@ export async function POST(req: NextRequest) {
     }
 
     const uid = new Types.ObjectId(user.userId);
+
+    if (room.maxParticipants && room.participants.length >= room.maxParticipants && !room.participants.some((p: Types.ObjectId) => p.equals(uid))) {
+      return NextResponse.json({ error: "Room is full" }, { status: 403 });
+    }
+
     if (!room.participants.some((p: Types.ObjectId) => p.equals(uid))) {
       room.participants.push(uid);
       await room.save();
     }
 
-    return NextResponse.json({ room: { code: room.code, id: room._id } });
+    return NextResponse.json({ room: { code: room.code, id: room._id, expiresAt: room.expiresAt, maxParticipants: room.maxParticipants, creator: room.creator } });
   } catch (error) {
     console.error("JOIN_ROOM_ERROR:", error);
     return NextResponse.json({ error: "Internal server error" }, { status: 500 });

@@ -1,4 +1,4 @@
-import { Schema, model, Types } from "mongoose";
+import { Schema, model, Types, models } from "mongoose";
 
 const userSchema = new Schema(
   {
@@ -44,4 +44,4 @@ userSchema.pre("save", function () {
   }
 });
 
-export const User = model("User", userSchema);
+export const User = models.User || model("User", userSchema);
