@@ -238,14 +238,4 @@ PRs and issues are welcome.
 4. Push to the branch (`git push origin feature/whatever`)
 5. Open a Pull Request
 
----
 
-## License
-
-MIT — see [LICENSE](LICENSE).
-
----
-
-<p align="center">
-  Built by <a href="https://github.com/Priyanshuuk">Priyanshuuk</a>
-</p>
