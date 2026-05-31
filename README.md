@@ -2,10 +2,10 @@
   <img src="public/screenshots/chat.png" alt="ChatterBox Banner" width="100%" style="border-radius: 12px; margin-bottom: 20px;" />
 </div>
 
-<h1 align="center">💬 ChatterBox</h1>
+<h1 align="center">ChatterBox</h1>
 
 <p align="center">
-  <strong>A full-stack real-time chat application with group rooms, direct messaging, media sharing, and live presence indicators.</strong>
+  Real-time chat app with group rooms, DMs, media sharing, and live presence.
 </p>
 
 <p align="center">
@@ -20,40 +20,40 @@
 
 ---
 
-## ✨ Features
+## Features
 
-### 💬 Real-Time Messaging
-- **Group Rooms** — Create or join rooms via 6-digit codes with optional expiry and participant limits.
-- **Direct Messages (DMs)** — Private conversations with any friend.
-- **Typing Indicators** — Messenger-style live typing status.
-- **Read Receipts** — "Sent" / "Seen" indicators on every message.
-- **Message Deletion** — Delete your own messages; room creators can delete any message.
+### Messaging
+- **Group rooms** — create or join rooms with 6-digit codes, optional expiry and participant limits.
+- **Direct messages** — private conversations with friends.
+- **Typing indicators** — see when someone's typing.
+- **Read receipts** — "Sent" / "Seen" on messages.
+- **Message deletion** — delete your own messages; room creators can delete anything.
 
-### 👥 User & Friend System
-- **JWT Authentication** — Secure signup, login, and session management.
-- **Friend Codes** — Add friends via unique 8-character alphanumeric codes.
-- **Friend Requests** — Send, accept, or reject with real-time notifications.
-- **Online Presence** — Live online/offline indicators for friends and room members.
+### Users & Friends
+- **JWT auth** — signup, login, session management.
+- **Friend codes** — add people via 8-char alphanumeric codes.
+- **Friend requests** — send, accept, reject with real-time notifs.
+- **Online presence** — see who's online.
 
-### 🎙️ Rich Media Sharing
-- **Image Uploads** — Share images directly in chat.
-- **Voice Messages** — Record and send audio messages (browser MediaRecorder API).
-- **GPS Location** — Share your real-time location via the browser Geolocation API.
+### Media
+- **Image uploads** — send pics in chat.
+- **Voice messages** — record and send audio (browser MediaRecorder API).
+- **GPS location** — share your location via Geolocation API.
 
-### 🔒 Security & Privacy
-- **Anti-Screenshot Protection** — Disables right-click, PrintScreen key, and DevTools shortcuts (Ctrl+Shift+I/J/C).
-- **Watermark Overlay** — Invisible background pattern to deter unauthorized captures.
-- **Session Rooms** — Rooms can auto-expire (5 min – 24 hr) for ephemeral conversations.
+### Security
+- **Anti-screenshot** — disables right-click, PrintScreen, DevTools shortcuts.
+- **Watermark overlay** — invisible background pattern to deter captures.
+- **Session rooms** — rooms auto-expire (5 min – 24 hr).
 
-### 🎨 Modern UI/UX
-- **Dark & Light Themes** — Seamless theme switching with `next-themes`.
-- **Glassmorphism Design** — Elegant frosted-glass UI with gradient accents.
-- **Responsive Sidebar** — Collapsible icon mode (Ctrl+B) and mobile hamburger menu.
-- **Animations** — Smooth transitions, message bubble glow shadows, and loading skeletons.
+### UI
+- **Dark & light themes** — toggles with `next-themes`.
+- **Glassmorphism** — frosted-glass look with gradients.
+- **Responsive sidebar** — collapses to icons (Ctrl+B), hamburger on mobile.
+- **Animations** — smooth transitions, glow shadows, loading skeletons.
 
 ---
 
-## 🖼️ Screenshots
+## Screenshots
 
 <div align="center">
   <table>
@@ -84,9 +84,9 @@
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
-| Layer | Technologies |
+| Layer | What I used |
 |-------|-------------|
 | **Frontend** | Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS 4, shadcn/ui, Lucide Icons |
 | **Backend** | Express.js 5, Socket.IO 4, Node.js |
@@ -98,7 +98,7 @@
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 chatterbox/
@@ -122,67 +122,66 @@ chatterbox/
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
 - **Node.js** >= 18
-- **MongoDB** instance (local or Atlas)
+- **MongoDB** (local or Atlas)
 
 ### Installation
 
 ```bash
-# Clone the repository
+# Clone the repo
 git clone https://github.com/Priyanshuuk/chatterbox.git
 cd chatterbox
 
-# Install dependencies
+# Install deps
 npm install
 
-# Configure environment variables
-# Edit the .env file with your MongoDB URI and a secure JWT secret:
+# Set up .env with your MongoDB URI and JWT secret:
 #   MONGODB_URI=mongodb+srv://<user>:<password>@<cluster>/chatapp
 #   JWT_SECRET=<your-secret-key>
 
-# Start the development server (Next.js + Socket.IO concurrently)
+# Start both Next.js and Socket.IO server
 npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-### Available Scripts
+### Scripts
 
 | Command | Description |
 |---------|-------------|
-| `npm run dev` | Start both Next.js and Socket.IO server in development mode |
-| `npm run dev:next` | Start only the Next.js dev server |
-| `npm run dev:socket` | Start only the Socket.IO server with hot-reload |
-| `npm run build` | Build the Next.js app for production |
-| `npm run start` | Run the production build + Socket.IO server |
-| `npm run lint` | Run ESLint across the codebase |
+| `npm run dev` | Start both Next.js and Socket.IO server in dev mode |
+| `npm run dev:next` | Start only Next.js |
+| `npm run dev:socket` | Start only Socket.IO server with hot-reload |
+| `npm run build` | Build Next.js for production |
+| `npm run start` | Run production build + Socket.IO server |
+| `npm run lint` | Run ESLint |
 
 ---
 
-## 🔌 API Overview
+## API Overview
 
-### Authentication
+### Auth
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| POST | `/api/auth/signup` | Create a new account |
-| POST | `/api/auth/login` | Log in with credentials |
-| POST | `/api/auth/logout` | Clear session cookie |
+| POST | `/api/auth/signup` | Create account |
+| POST | `/api/auth/login` | Log in |
+| POST | `/api/auth/logout` | Clear session |
 
 ### Users & Profile
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| GET | `/api/me` | Get the current authenticated user |
+| GET | `/api/me` | Get current user |
 | PATCH | `/api/user` | Update profile (username, avatar) |
 
 ### Rooms
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| POST | `/api/rooms` | Create a new group room |
-| GET | `/api/rooms/list` | List user's group rooms |
+| POST | `/api/rooms` | Create a group room |
+| GET | `/api/rooms/list` | List your group rooms |
 | POST | `/api/rooms/join` | Join a room by code |
 | GET | `/api/room/members` | Get room participants |
 
@@ -209,12 +208,12 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ---
 
-## 🔌 Socket.IO Events
+## Socket.IO Events
 
 | Event | Direction | Description |
 |-------|-----------|-------------|
-| `create-room` | Client → Server | Create a new room |
-| `join-room` | Client → Server | Join an existing room |
+| `create-room` | Client → Server | Create a room |
+| `join-room` | Client → Server | Join a room |
 | `leave-room` | Client → Server | Leave a room |
 | `send-message` | Client → Server | Send a chat message |
 | `delete-message` | Client → Server | Delete a message |
@@ -229,16 +228,24 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
-Contributions are welcome! Feel free to open issues and pull requests.
+PRs and issues are welcome.
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
+1. Fork the repo
+2. Create a feature branch (`git checkout -b feature/whatever`)
+3. Commit your changes (`git commit -m 'Add whatever'`)
+4. Push to the branch (`git push origin feature/whatever`)
 5. Open a Pull Request
 
 ---
 
+## License
 
+MIT — see [LICENSE](LICENSE).
+
+---
+
+<p align="center">
+  Built by <a href="https://github.com/Priyanshuuk">Priyanshuuk</a>
+</p>
