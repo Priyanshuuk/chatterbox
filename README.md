@@ -1,12 +1,6 @@
-<div align="center">
-  <img src="public/screenshots/chat.png" alt="ChatterBox Banner" width="100%" style="border-radius: 12px; margin-bottom: 20px;" />
-</div>
+# ChatterBox
 
-<h1 align="center">ChatterBox</h1>
-
-<p align="center">
-  Real-time chat app with group rooms, DMs, media sharing, and live presence.
-</p>
+Real-time chat app with group rooms, DMs, media sharing, and live presence.
 
 <p align="center">
   <img src="https://img.shields.io/badge/Next.js-16.1.1-000000?style=flat-square&logo=next.js" alt="Next.js" />
@@ -86,8 +80,8 @@
 
 ## Tech Stack
 
-| Layer | What I used |
-|-------|-------------|
+| Layer | Stack |
+|-------|-------|
 | **Frontend** | Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS 4, shadcn/ui, Lucide Icons |
 | **Backend** | Express.js 5, Socket.IO 4, Node.js |
 | **Database** | MongoDB + Mongoose 9 |
@@ -153,11 +147,11 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 | Command | Description |
 |---------|-------------|
-| `npm run dev` | Start both Next.js and Socket.IO server in dev mode |
-| `npm run dev:next` | Start only Next.js |
-| `npm run dev:socket` | Start only Socket.IO server with hot-reload |
+| `npm run dev` | Start both Next.js and Socket.IO in dev mode |
+| `npm run dev:next` | Start Next.js only |
+| `npm run dev:socket` | Start Socket.IO server only (hot-reload) |
 | `npm run build` | Build Next.js for production |
-| `npm run start` | Run production build + Socket.IO server |
+| `npm run start` | Production build + Socket.IO server |
 | `npm run lint` | Run ESLint |
 
 ---
