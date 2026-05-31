@@ -58,28 +58,26 @@
 <div align="center">
   <table>
     <tr>
-      <td><img src="public/screenshots/landing.png" alt="Landing Page (Dark)" width="400" /></td>
-      <td><img src="public/screenshots/landing1.png" alt="Landing Page (Light)" width="400" /></td>
+      <td><img src="public/screenshots/landing.png" alt="Landing Page" width="400" /></td>
+      <td><img src="public/screenshots/signup.png" alt="Signup Page" width="400" /></td>
     </tr>
     <tr>
-      <td align="center"><em>Landing Page — Dark Mode</em></td>
-      <td align="center"><em>Landing Page — Light Mode</em></td>
-    </tr>
-    <tr>
-      <td><img src="public/screenshots/login.png" alt="Login (Dark)" width="400" /></td>
-      <td><img src="public/screenshots/signup.png" alt="Signup (Dark)" width="400" /></td>
-    </tr>
-    <tr>
-      <td align="center"><em>Login</em></td>
+      <td align="center"><em>Landing Page</em></td>
       <td align="center"><em>Signup</em></td>
     </tr>
     <tr>
-      <td><img src="public/screenshots/chat.png" alt="Chat Dashboard (Dark)" width="400" /></td>
-      <td><img src="public/screenshots/chat1.png" alt="Chat Dashboard (Light)" width="400" /></td>
+      <td><img src="public/screenshots/home.png" alt="Home Page" width="400" /></td>
+      <td><img src="public/screenshots/chat.png" alt="Chat Dashboard" width="400" /></td>
     </tr>
     <tr>
-      <td align="center"><em>Chat Dashboard — Dark Mode</em></td>
-      <td align="center"><em>Chat Dashboard — Light Mode</em></td>
+      <td align="center"><em>Home / Dashboard</em></td>
+      <td align="center"><em>Chat Dashboard</em></td>
+    </tr>
+    <tr>
+      <td><img src="public/screenshots/room.png" alt="Chat Room" width="800" colspan="2" /></td>
+    </tr>
+    <tr>
+      <td align="center" colspan="2"><em>Group Chat Room</em></td>
     </tr>
   </table>
 </div>
